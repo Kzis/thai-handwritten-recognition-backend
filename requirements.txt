@@ -20,7 +20,7 @@ MarkupSafe==1.1.1
 numpy==1.18.1
 olefile==0.46
 Pillow==7.1.2
-protobuf==3.11.4
+protobuf==3.11.3
 pygpu==0.7.6
 pyreadline==2.1
 PyYAML==5.3.1
