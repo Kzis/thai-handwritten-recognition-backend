@@ -48,6 +48,7 @@ def predict():
         set_session(sess)
         out = model.predict(imgReshape)
         response = np.array_str(np.argmax(out,axis=1))
+        print("test pull request here")
         print(response)
         return response	
 
