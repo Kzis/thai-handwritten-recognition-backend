@@ -4,6 +4,8 @@ from PIL import Image
 import numpy as np
 
 import tensorflow as tf
+# tf.enable_eager_execution()
+
 import keras
 import tensorflow.keras.models
 from keras.models import model_from_json
@@ -23,8 +25,9 @@ def init():
 
     # load model
     model_mnist = load_model_mnist()
+    model_thw = load_model_thw()
 
-    return model_mnist,graph,session
+    return model_mnist,model_thw,graph,session
 
 def load_model_mnist():
     json_file = open('./model.json','r')
@@ -34,6 +37,20 @@ def load_model_mnist():
 
     #load weights into new model
     loaded_model.load_weights("model.h5")
+
+    #compile and evaluate loaded model
+    loaded_model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
+
+    return loaded_model
+
+def load_model_thw():
+    json_file = open('./model_thw.json','r')
+    loaded_model_json = json_file.read()
+    json_file.close()
+    loaded_model = model_from_json(loaded_model_json)
+
+    #load weights into new model
+    loaded_model.load_weights("model_thw.h5")
 
     #compile and evaluate loaded model
     loaded_model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
