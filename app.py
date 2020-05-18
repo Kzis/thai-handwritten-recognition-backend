@@ -16,8 +16,8 @@ app = Flask(__name__)
 app.config['CORS_HEADERS'] = "Content-Type"
 cors = CORS(app,resources={r"/foo": {"origins": "*"}})
 
-global graph, model, model_thw , sess
-model,model_thw, graph , sess = init()
+global graph, model , sess
+model, graph , sess = init()
 
 def convertImage(imgData1):
     print("convertImage")
@@ -30,7 +30,7 @@ def convertImage(imgData1):
 @app.route('/',methods=['GET'])
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def test():
-    return "Hello World."
+    return "Hello World. test ci cd"
 
 
 @app.route('/predict/',methods=['GET','POST'])
@@ -57,7 +57,9 @@ def predict():
     with graph.as_default():
         set_session(sess)
         # out = model.predict(imgReshape)
-        out = model_thw.predict(imgReshape)
+        out = model.predict(imgReshape)
+        print("out ======")
+        print(out)
         response = get_thai_char_by_idex(out)
 
         return jsonify({'response': response})	
@@ -68,6 +70,8 @@ def get_thai_char_by_idex(arr_idx):
 
     result = []
     idx = arr_idx[0]
+    print("idx =========")
+    print(idx)
 
     for i in range(len(thai)):
         result.append((thai[i],idx[i]))
@@ -75,6 +79,7 @@ def get_thai_char_by_idex(arr_idx):
     sorted_by_second = sort_tuple(result)
     sorted_by_invert = sorted_by_second[::-1][:3]
 
+    print("sort =======")
     print(sorted_by_invert)
 
     t = ""

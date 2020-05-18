@@ -27,7 +27,7 @@ def init():
     model_mnist = load_model_mnist()
     model_thw = load_model_thw()
 
-    return model_mnist,model_thw,graph,session
+    return model_thw,graph,session
 
 def load_model_mnist():
     json_file = open('./model.json','r')
