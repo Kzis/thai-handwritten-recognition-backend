@@ -6,6 +6,10 @@
 # Demo
 - https://kzis.github.io/thai-handwritten-recognition-frontend/#
 
+# Source
+- Frontend : https://github.com/Kzis/thai-handwritten-recognition-frontend/
+- Model : https://github.com/Kzis/thai-handwritten-recognition-model
+
 # Technology
 - Python 3.6
 - Flask
