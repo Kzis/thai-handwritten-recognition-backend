@@ -4,6 +4,8 @@ from PIL import Image
 import numpy as np
 
 import tensorflow as tf
+# tf.enable_eager_execution()
+
 import keras
 import tensorflow.keras.models
 from keras.models import model_from_json
@@ -22,11 +24,11 @@ def init():
     graph = tf.get_default_graph()
 
     # load model
-    model_mnist = load_model_mnist()
+    model_thw = load_model_thw()
 
-    return model_mnist,graph,session
+    return model_thw,graph,session
 
-def load_model_mnist():
+def load_model_thw():
     json_file = open('./model.json','r')
     loaded_model_json = json_file.read()
     json_file.close()
