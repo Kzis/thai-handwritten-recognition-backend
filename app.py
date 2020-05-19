@@ -47,8 +47,8 @@ def predict():
     # im4 = x.crop((0, 211, 280, 280)).save('output4.png')
     
     imgInvert = np.invert(imgFromOutPut)
-    imgResize = np.array(Image.fromarray(imgInvert).resize(size=(98,98)))
-    imgReshape = imgResize.reshape(1,98,98,1)
+    imgResize = np.array(Image.fromarray(imgInvert).resize(size=(95,95)))
+    imgReshape = imgResize.reshape(1,95,95,1)
 
     # imgResize = np.array(Image.fromarray(imgInvert).resize(size=(28,28)))
     # imgReshape = imgResize.reshape(1,28,28,1)
@@ -58,8 +58,8 @@ def predict():
         set_session(sess)
         # out = model.predict(imgReshape)
         out = model.predict(imgReshape)
-        print("out ======")
-        print(out)
+        # print("out ======")
+        # print(out)
         response = get_thai_char_by_idex(out)
 
         return jsonify({'response': response})	
@@ -70,8 +70,8 @@ def get_thai_char_by_idex(arr_idx):
 
     result = []
     idx = arr_idx[0]
-    print("idx =========")
-    print(idx)
+    # print("idx =========")
+    # print(idx)
 
     for i in range(len(thai)):
         result.append((thai[i],idx[i]))
