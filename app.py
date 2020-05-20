@@ -46,10 +46,10 @@ def predict():
     # im3 = x.crop((0, 141, 280, 210)).save('output3.png')
     # im4 = x.crop((0, 211, 280, 280)).save('output4.png')
     
-    imgInvert = np.invert(imgFromOutPut)
-    imgResize = np.array(Image.fromarray(imgInvert).resize(size=(95,95)))
+    imgResize = np.array(Image.fromarray(imgFromOutPut).resize(size=(95,95)))
     imgReshape = imgResize.reshape(1,95,95,1)
-
+    imgReshape = imgReshape//255
+    
     # imgResize = np.array(Image.fromarray(imgInvert).resize(size=(28,28)))
     # imgReshape = imgResize.reshape(1,28,28,1)
     
@@ -65,8 +65,10 @@ def predict():
         return jsonify({'response': response})	
 
 def get_thai_char_by_idex(arr_idx):
-    thai = ["ก","ข","ฃ","ค","ฅ","ฆ","ง","จ","ฉ","ช","ซ","ฌ","ญ","ฎ","ฏ","ฐ","ฑ","ฒ","ณ","ด","ต",
-    "ถ","ท","ธ","น","บ","ป","ผ","ฝ","พ","ฟ","ภ","ม","ย","ร","ล","ว","ศ","ษ","ส","ห","ฬ","อ","ฮ"]
+    thai = ['ก', 'ข', 'ฃ', 'ค', 'ฅ', 'ฆ', 'ง', 'จ', 'ฉ', 'ช', 'ซ', 'ฌ', 'ญ', 'ฎ', 'ฏ',
+            'ฐ', 'ฑ', 'ฒ', 'ณ', 'ด', 'ต', 'ถ', 'ท', 'ธ', 'น', 'บ', 'ป', 'ผ', 'ฝ', 'พ',
+            'ฟ', 'ภ', 'ม', 'ย', 'ร', 'ฤ', 'ล', 'ว', 'ศ', 'ษ', 'ส', 'ห', 'ฬ', 'อ', 'อะ',
+            'อา', 'อำ', 'ฮ', 'ฯ', 'เ', 'แ', 'โ', 'ใ', 'ไ', 'ๆ']
 
     result = []
     idx = arr_idx[0]
