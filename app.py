@@ -18,6 +18,7 @@ cors = CORS(app,resources={r"/foo": {"origins": "*"}})
 
 global graph, model , sess
 model, graph , sess = init()
+img_size = 256
 
 def convertImage(imgData1):
     print("convertImage")
@@ -46,8 +47,8 @@ def predict():
     # im3 = x.crop((0, 141, 280, 210)).save('output3.png')
     # im4 = x.crop((0, 211, 280, 280)).save('output4.png')
     
-    imgResize = np.array(Image.fromarray(imgFromOutPut).resize(size=(95,95)))
-    imgReshape = imgResize.reshape(1,95,95,1)
+    imgResize = np.array(Image.fromarray(imgFromOutPut).resize(size=(img_size,img_size)))
+    imgReshape = imgResize.reshape(1,img_size,img_size,1)
     imgReshape = imgReshape//255
     
     # imgResize = np.array(Image.fromarray(imgInvert).resize(size=(28,28)))
